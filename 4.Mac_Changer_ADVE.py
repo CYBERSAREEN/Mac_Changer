@@ -1,38 +1,30 @@
 """ 
-This python file is the ADVANCE module of the MAC Address changer for the linux system that work on the basic console commands + it has variables and conditional statements with updates 
+another advance model for mac address changer which handles error when user will not put anything to increment the main things such as interface or new mac add.
+also it checks whether the prompt is on kali or bieng used in windows 
 """
-import subprocess as sb
-import optparse as opt
+import subprocess as sb #>>>this will import subprocess to perform terminal commands
+import optparse as opt #>>>this will import the manual liberary to project manual on terminal 
+def get_arguments():
+    parser = opt.OptionParser()
+    parser.add_option("-i","--interface",dest = "interface",help="Here to provide the interface name of network interface of your choice")
+    parser.add_option("-m","--mac",dest = "new_mac",help="This arggument is designed to change its MAC ADDRESS")
+    (options,arguments) =  parser.parse_args() 
+    if not options.interface:
+        #code to handle error
+        #if the user didn't put any value show error <no interface provided>
+        parser.error("[-]<please specify the interface ,use --help for info>")
+        
+    elif not options.new_mac:
+        #code to handle error
+        #if the user didnt put any value show error <no mac address provided>
+        parser.error("[-]<please specify the mac adderess ,use --help for info>")
+        return options
+def change_mac(interface,new_mac):
+    sb.call(["ifconfig",  interface , "down"])
+    sb.call(["ifconfig" , interface , "hw" , "ether",  new_mac])
+    sb.call(["ifconfig", interface  ,"up"])
+    print("[+] Changeing Mac Address for ",interface + " .......")
+    print("[+] Current MAc is changed to ",new_mac )    
+options = get_arguments()
+change_mac(options.interface, options.new_mac)
 
-parser = opt.OptionParser() # the class is bieng called
-
-#it will return the user entering something in a certain way storing its value to the variables.
-
-parser.add_option("-i","--interface",dest = "interface",help="Here to provide the interface name of network interface of your choice")
-
-# here the parser is ordered to append values on gettting -i or --interface as a command to append the string value to the interface or the mentioned variable  
-# dest= "interface" >>> directs the value to be stored at certain possition 
-
-parser.add_option("-m","--mac",dest = "new_mac",help="This arggument is designed to change its MAC ADDRESS")
-#creating for new_mac
-#>>>parser.parse_args()
-#it will go through every information entered by the user and will seperate the information in two parts
-#it will take arguments
-"""
->>> To make it address to the options availbale to the interface and new mack we need to update this to 
-"""
-# we need to make the parser understand that how the code will work and where to innitialise the value/string added to it 
-(options,arguments) = parser.parse_args() #it will act as function 
-
-#options will take <name of interface> ,<the new mac assigned> and the arguments will take -i or -m
-# so we have to update this code to options.interface and options.newmac
-sb.call("iwconfig",shell = True)
-interface = options.interface
-new_mac = options.new_mac
-
-sb.call(["ifconfig",  interface , "down"])
-sb.call(["ifconfig" , interface , "hw" , "ether",  new_mac])
-sb.call(["ifconfig", interface  ,"up"])
-
-print("[+] Changeing Mac Address for ",interface + " .......")
-print("[+] Current MAc is changed to ",new_mac )
