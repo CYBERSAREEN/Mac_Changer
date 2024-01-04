@@ -12,7 +12,12 @@ In order to attain anonymity, we shall change the mac address in order to protec
 The tool is designed by keeping in mind that user shall not feel and sort of discomfort while redesign or while learning its architecture. 
 <br>
 ________________________________________________________________________________________<br>
-USAGE:
+THIS MODULE IS SOLLY MADE FOR LEARNING PERPOSES!
+USAGE: <br>
 `mkdir MAC_CHANGER` <br>
-`cd MAC_CHANGER`
+`cd MAC_CHANGER` <br>
+`git clone https://github.com/CYBERSAREEN/Mac_Changer.git` <br>
+now open the terminal where all files are cloned <br>
+type : `python3 <name of the mac_changer> --help ` (note that the macchanger credentials may vary) <br>
+use "gedit ~name of the mac changer~ " to change values or use vs code for the same.
 ________________________________________________________________________________________<br>
