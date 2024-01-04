@@ -19,5 +19,5 @@ USAGE: <br>
 `git clone https://github.com/CYBERSAREEN/Mac_Changer.git` <br>
 now open the terminal where all files are cloned <br>
 type : `python3 <name of the mac_changer> --help ` (note that the macchanger credentials may vary) <br>
-use "gedit ~name of the mac changer~ " to change values or use vs code for the same.
+use "gedit 'name of the mac changer' " to change values or use vs code for the same.
 ________________________________________________________________________________________<br>
